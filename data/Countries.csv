@@ -1,0 +1,248 @@
+Id;Name;CountryCode;Continent;Population;Area;GovernmentForm;Currency;CurrencyCode;Birthrate;Deathrate;LifeExpectancy
+1;Afghanistan;AF;Asia;32564342;652230;Republic;Afghani;AFN;38.6;13.9;50.9
+2;Egypt;EG;Africa;88487396;1001450;Republic;Pfund;EGP;22.9;4.8;73.7
+3;Albania;AL;Europe;3029278;28748;Republic;Lek;ALL;12.9;6.6;78.1
+4;Algeria;DZ;Africa;39542166;2381741;Republic;Dinar;DZD;23.7;4.3;76.6
+5;American Samoa;AS;Oceania;54343;199;Territory;Dollar;USD;22.9;4.8;75.1
+6;Andorra;AD;Europe;85580;468;Monarchy;Euro;EUR;8.1;7;82.7
+7;Angola;AO;Africa;19625353;1246700;Republic;Kwanza;AOA;38.8;11.5;55.6
+8;Anguilla;AI;North America;16418;91;Territory;Dollar;XCD;12.7;4.6;81.3
+9;Antarctica;AQ;Antarctica;0;14000000;Territory;;;0.0;0.0;0.0
+10;Antigua and Barbuda;AG;North America;92436;443;Monarchy;Dollar;XCD;15.9;5.7;76.3
+11;Equatorial Guinea;GQ;Africa;740743;28051;Republic;Franc;XAF;33.3;8.2;63.9
+12;Argentina;AR;South America;43431886;2780400;Republic;Peso;ARS;16.6;7.3;77.7
+13;Armenia;AM;Asia;3056382;29743;Republic;Dram;AMD;13.6;9.3;74.4
+14;Aruba;AW;North America;112162;180;Territory;Florin;AWG;12.6;8.2;76.6
+15;Azerbaijan;AZ;Asia;9780780;86600;Republic;Manat;AZN;16.6;7.1;72.2
+16;Ethiopia;ET;Africa;99465819;1104300;Republic;Birr;ETB;37.3;8.2;61.5
+17;Australia;AU;Australia;22751014;7741220;Monarchy;Dollar;AUD;12.2;7.1;82.2
+18;Bahamas;BS;North America;324597;13880;Monarchy;Dollar;BSD;15.5;7.1;72.2
+19;Bahrain;BH;Asia;1346613;760;Monarchy;Dinar;BHD;13.7;2.7;78.7
+20;Bangladesh;BD;Asia;168957745;143998;Republic;Taka;BDT;21.1;5.6;70.9
+21;Barbados;BB;North America;290604;430;Monarchy;Dollar;BBD;11.9;8.4;75.2
+22;Belarus;BY;Europe;9589689;207600;Republic;Rubel;BYR;10.7;13.4;72.5
+23;Belgium;BE;Europe;11323973;30528;Monarchy;Euro;EUR;11.4;9.6;80.9
+24;Belize;BZ;Central America;347369;22966;Monarchy;Dollar;BZD;24.7;6;68.6
+25;Benin;BJ;Africa;10448647;112622;Republic;Franc;XOF;36;8.2;61.5
+26;Bermuda;BM;North America;70196;54;Territory;Dollar;BMD;11.3;8.2;81.2
+27;Bhutan;BT;Asia;741919;38394;Monarchy;Ngultrum;BTN;17.8;6.7;69.5
+28;Bolivia;BO;South America;10800882;1098581;Republic;Boliviano;BOB;22.8;6.5;68.9
+29;Bosnia and Herzegovina;BA;Europe;3867055;51197;Republic;Konvertible Mark;BAM;8.9;9.8;76.5
+30;Botswana;BW;Africa;2182719;581730;Republic;Pula;BWP;21;13.4;54.2
+31;Bouvet Island;BV;Antarctica;0;49;Territory;Krone;NOK;0.0;0.0;0.0
+32;Brazil;BR;South America;204259812;8514877;Republic;Real;BRL;14.5;6.6;73.5
+33;British Indian Ocean Territory;IO;Africa;0;54400;Territory;Dollar;USD;0.0;0.0;0.0
+34;Brunei;BN;Asia;429646;5765;Monarchy;Dollar;BND;17.3;3.5;77
+35;Bulgaria;BG;Europe;7186893;110879;Republic;Lew;BGN;8.9;14.4;74.4
+36;Burkina Faso;BF;Africa;18931686;274200;Republic;Franc;XOF;42;11.7;55.1
+37;Burundi;BI;Africa;10742276;27830;Republic;Franc;BIF;42;9.3;60.1
+38;Chile;CL;South America;17508260;756102;Republic;Peso;CLP;13.8;6;78.6
+39;China;CN;Asia;1367485388;9596960;Republic;Yuan;CNY;12.5;7.5;75.4
+40;Cook Islands;CK;Oceania;9838;236;Territory;Dollar;NZD;14.3;8;75.6
+41;Costa Rica;CR;Central America;4814144;51100;Republic;Colón;CRC;15.9;4.6;78.4
+42;Curacao;CW;America;146836;444;Territory;Gulden;ANG;0.0;8;78
+43;Denmark;DK;Europe;5581503;43094;Monarchy;Krone;DKK;10.3;10.3;79.2
+44;Democratic Republic of the Congo;CD;Africa;79375136;2344858;Republic;Franc;CDF;34.9;10.1;56.9
+45;Germany;DE;Europe;80854408;357022;Republic;Euro;EUR;8.5;11.4;80.6
+46;Dominica;DM;North America;73607;751;Republic;Dollar;XCD;15.4;7.9;76.8
+47;Dominican Republic;DO;North America;10478756;48670;Republic;Peso;DOP;18.7;4.6;78
+48;Djibouti;DJ;Africa;828324;23200;Republic;Franc;DJF;23.7;7.7;62.8
+49;Ecuador;EC;South America;15868396;283561;Republic;Dollar;USD;18.5;5.1;76.6
+50;El Salvador;SV;Central America;6141350;21041;Republic;Dollar;USD;16.5;5.7;74.4
+51;Ivory Coast;CI;Africa;23295302;322463;Republic;Franc;XOF;28.7;9.6;58.3
+52;Eritrea;ER;Africa;6527689;117600;Republic;Nakfa;ERN;30;7.5;63.8
+53;Estonia;EE;Europe;1265420;45228;Republic;Euro;EUR;10.5;12.4;76.5
+54;Falkland Islands;FK;South America;3361;12173;Territory;Pfund;FKP;0.0;0.0;0.0
+55;Faroe Islands;FO;Europe;50196;1393;AutonomousRegion;Krone;DKK;13.8;8.7;80.2
+56;Fiji;FJ;Oceania;909389;18274;Republic;Dollar;FJD;19.4;6;72.4
+57;Finland;FI;Europe;5476922;338145;Republic;Euro;EUR;10.7;9.8;80.8
+58;France;FR;Europe;66553766;643801;Republic;Euro;EUR;12.4;9.2;81.8
+59;French Guiana;GF;South America;181000;83534;Territory;Euro;EUR;0.0;0.0;76.1
+60;French Polynesia;PF;Oceania;282703;4167;AutonomousRegion;Franc;XPF;15.2;5;77
+61;French Southern and Antarctic Lands;TF;Antarctica;0;439672;Territory;Euro;EUR;0.0;0.0;0.0
+62;Gabon;GA;Africa;1705336;267667;Republic;Franc;XAF;34.5;13.1;52
+63;Gambia;GM;Africa;1967709;11295;Republic;Dalasi;GMD;30.9;7.2;64.6
+64;Georgia;GE;Asia;4931226;69700;Republic;Lari;GEL;12.7;10.8;76
+65;Ghana;GH;Africa;26327649;238533;Republic;Ghana Cedi;GHS;31.1;7.2;66.2
+66;Gibraltar;GI;Europe;29258;7;Territory;Pfund;GIP;14.1;8.4;79.3
+67;Grenada;GD;North America;110694;344;Monarchy;Dollar;XCD;16;8.1;74
+68;Greece;GR;Europe;10775643;131957;Republic;Euro;EUR;8.7;11.1;80.4
+69;Greenland;GL;North America;57733;2166086;AutonomousRegion;Krone;DKK;14.5;8.5;72.1
+70;Guadeloupe;GP;North America;456000;1628;Territory;Euro;EUR;0.0;0.0;77
+71;Guam;GU;Oceania;161785;544;Territory;Dollar;USD;16.8;5.1;79
+72;Guatemala;GT;Central America;14918999;108889;Republic;Quetzal;GTQ;24.9;4.8;72
+73;Guernsey;GG;Europe;66080;78;ParliamentaryDemocracy;Pfund;GGP;9.8;8.8;82.5
+74;Guinea;GN;Africa;11780162;245857;Republic;Franc;GNF;35.7;9.5;60.1
+75;Guinea-Bissau;GW;Africa;1726170;36125;Republic;Franc;XOF;33.4;14.3;50.2
+76;Guyana;GY;South America;735222;214969;Republic;Dollar;GYD;15.6;7.3;68.1
+77;Haiti;HT;North America;10110019;27750;Republic;Gourde;HTG;22.3;7.8;63.5
+78;Heard Island and McDonald Islands;HM;Antarctica;0;412;Territory;Dollar;AUD;0.0;0.0;0.0
+79;Honduras;HN;Central America;8746673;112090;Republic;Lempira;HNL;23.1;5.2;71
+80;Hong Kong;HK;Asia;7141106;1108;AdministrativeRegion;Dollar;HKD;9.2;7.1;82.9
+81;India;IN;Asia;1251695584;3287263;Republic;Rupie;INR;19.6;7.3;68.1
+82;Indonesia;ID;Asia;255993674;1904569;Republic;Rupiah;IDR;16.7;6.4;72.5
+83;Isle of Man;IM;Europe;87545;572;ParliamentaryDemocracy;Pfund;IMP;11.1;10.1;81.1
+84;Iraq;IQ;Asia;37056169;438317;Republic;Dinar;IQD;31.5;3.8;74.8
+85;Iran;IR;Asia;81824270;1648195;Republic;Rial;IRR;18;5.9;71.2
+86;Ireland;IE;Europe;4892305;70273;Republic;Euro;EUR;14.8;6.5;80.7
+87;Iceland;IS;Europe;331918;103000;Republic;Krone;ISK;13.9;6.3;83
+88;Israel;IL;Asia;8049314;20770;Republic;Schekel;ILS;18.5;5.2;82.3
+89;Italy;IT;Europe;61855120;301340;Republic;Euro;EUR;8.7;10.2;82.1
+90;Jamaica;JM;North America;2950210;10991;Monarchy;Dollar;JMD;18.2;6.7;73.5
+91;Japan;JP;Asia;126919659;377915;Monarchy;Yen;JPY;7.9;9.5;84.7
+92;Yemen;YE;Asia;26737317;527968;Republic;Rial;YER;30;6.3;65.2
+93;Jersey;JE;Europe;97294;116;ParliamentaryDemocracy;Pfund-Sterling;JEP;11.9;7.7;81.8
+94;Jordan;JO;Asia;8117564;89342;Monarchy;Dinar;JOD;25.4;3.8;74.3
+95;British Virgin Islands;VG;North America;33454;151;Territory;Dollar;USD;10.9;5;78.5
+96;Virgin Islands;VI;North America;103574;1910;Territory;Dollar;USD;10.3;8.5;79.9
+97;Cayman Islands;KY;North America;56092;264;Territory;Cayman-Dollar;KYD;12.1;5.5;81.1
+98;Cambodia;KH;Asia;15708756;181035;Monarchy;Riel;KHR;23.8;7.7;64.1
+99;Cameroon;CM;Africa;23739218;475440;Republic;Franc;XAF;36.2;10.1;57.9
+100;Canada;CA;North America;35099836;9984670;Monarchy;Dollar;CAD;10.3;8.4;81.8
+101;Cape Verde;CV;Africa;545993;4033;Republic;Escudo;CVE;20.3;6.1;71.8
+102;Kazakhstan;KZ;Asia;18157122;2724900;Republic;Tenge;KZT;19.2;8.2;70.5
+103;Qatar;QA;Asia;2194817;11586;Monarchy;Dollar;QAR;9.8;1.5;78.6
+104;Kenya;KE;Africa;45925301;580367;Republic;Schilling;KES;26.4;6.9;63.8
+105;Kyrgyzstan;KG;Asia;5664939;199951;Republic;Som;KGS;23;6.7;70.4
+106;Kiribati;KI;Oceania;105711;811;Republic;Dollar;AUD;21.5;7.1;65.8
+107;Cocos Islands;CC;Australia;596;14;Territory;Dollar;AUD;0.0;0.0;0.0
+108;Colombia;CO;South America;46736728;1138910;Republic;Peso;COP;16.5;5.4;75.5
+109;Comoros;KM;Africa;780971;2235;Republic;Franc;KMF;27.8;7.6;63.9
+110;Republic of the Congo;CG;Africa;4755097;342000;Republic;Franc;CDF;35.9;10;58.8
+111;Kosovo;XK;Europe;1870981;10887;ParliamentaryDemocracy;Euro;EUR;0.0;0.0;69
+112;Croatia;HR;Europe;4464844;56594;Republic;Kuna;HRK;9.5;12.2;76.6
+113;Cuba;CU;North America;11031433;110860;Republic;Peso;CUP;9.9;7.7;78.4
+114;Kuwait;KW;Asia;2788534;17818;Monarchy;Dinar;KWD;19.9;2.2;77.8
+115;Laos;LA;Asia;6911544;236800;Republic;Kip;LAK;24.3;7.6;63.9
+116;Lesotho;LS;Africa;1947701;30355;Monarchy;Loti;LSL;25.5;14.9;52.9
+117;Latvia;LV;Europe;1986705;64589;Republic;Euro;EUR;10;14.3;74.2
+118;Lebanon;LB;Asia;6184701;10400;Republic;Pfund;LBP;14.6;4.9;77.4
+119;Liberia;LR;Africa;4195666;111369;Republic;Dollar;LRD;34.4;9.7;58.6
+120;Libya;LY;Africa;6411776;1759540;Republic;Dinar;LYD;18;3.6;76.3
+121;Liechtenstein;LI;Europe;37624;160;Monarchy;Franken;CHF;10.5;7.1;81.8
+122;Lithuania;LT;Europe;2884433;65300;Republic;Litas;LTL;10.1;14.3;74.7
+123;Luxembourg;LU;Europe;570252;2586;Monarchy;Euro;EUR;11.4;7.2;82.2
+124;Macau;MO;Asia;592731;28;AdministrativeRegion;Pataca;MOP;8.9;4.2;84.5
+125;Madagascar;MG;Africa;23812681;587041;Republic;Ariary;MGA;32.6;6.8;65.5
+126;Malawi;MW;Africa;17964697;118484;Republic;Kwacha;MWK;41.6;8.4;60.7
+127;Malaysia;MY;Asia;30513848;329847;Monarchy;Ringgit;MYR;19.7;5;74.8
+128;Maldives;MV;Asia;393253;298;Republic;Rufiyaa;MVR;15.8;3.9;75.4
+129;Mali;ML;Africa;16955536;1240192;Republic;Franc;XOF;45;12.9;55.3
+130;Malta;MT;Europe;413965;316;Republic;Euro;EUR;10.2;9.1;80.2
+131;Morocco;MA;Africa;33322699;446550;Monarchy;Dirham;MAD;18.2;4.8;76.7
+132;Marshall Islands;MH;Oceania;72191;181;Republic;Dollar;USD;25.6;4.2;72.8
+133;Martinique;MQ;North America;395000;1128;Territory;Euro;EUR;0.0;0.0;78.3
+134;Mauritania;MR;Africa;3596702;1030700;Republic;Ouguiya;MRO;31.3;8.2;62.6
+135;Mauritius;MU;Africa;1339827;2040;Republic;Rupie;MUR;13.3;6.9;75.4
+136;Mayotte;YT;Africa;223765;374;Territory;Euro;EUR;39.3;0.0;62.9
+137;Macedonia;MK;Europe;2096015;25713;Republic;Denar;MKD;11.6;9.1;76
+138;Mexico;MX;Central America;121736809;1964375;Republic;Peso;MXN;18.8;5.3;75.7
+139;Micronesia, Federated States of;FM;Oceania;105216;702;Republic;Dollar;USD;20.5;4.2;72.6
+140;Moldova;MD;Europe;3546847;33851;Republic;Leu;MDL;12;12.6;70.4
+141;Monaco;MC;Europe;30535;2;Monarchy;Euro;EUR;6.7;9.2;89.5
+142;Mongolia;MN;Asia;2992908;1564116;Republic;Tögrög;MNT;20.3;6.4;69.3
+143;Montenegro;ME;Europe;647073;13812;Republic;Euro;EUR;10.4;9.4;0.0
+144;Montserrat;MS;North America;5241;102;Territory;Dollar;XCD;11.3;6.3;74.1
+145;Mozambique;MZ;Africa;25303113;799380;Republic;Metical;MZN;38.6;12.1;52.9
+146;Burma;MM;Asia;56320206;676578;Republic;Kyat;MMK;18.4;8;66.3
+147;Namibia;NA;Africa;2212307;824292;Republic;Dollar;NAD;19.8;13.9;51.6
+148;Nauru;NR;Oceania;9540;21;Republic;Dollar;AUD;25;5.9;66.8
+149;Nepal;NP;Asia;31551305;147181;Monarchy;Rupie;NPR;20.6;6.6;67.5
+150;New Caledonia;NC;Oceania;271615;18575;OverseasCommunity;Franc;XPF;15.3;5.5;77.5
+151;New Zealand;NZ;Australia;4438393;267710;Monarchy;Dollar;NZD;13.3;7.4;81
+152;Nicaragua;NI;Central America;5907881;130370;Republic;Córdoba Oro;NIO;18;5.1;73
+153;Netherlands;NL;Europe;16947904;41543;Monarchy;Euro;EUR;10.8;8.7;81.2
+154;Netherlands Antilles;AN;North America;227049;800;Territory;Gulden;ANG;14.2;0.0;76.7
+155;Niger;NE;Africa;18045729;1267000;Republic;Franc;XOF;45.5;12.4;55.1
+156;Nigeria;NG;Africa;181562056;923768;Republic;Naira;NGN;37.6;12.9;53
+157;Niue;NU;Oceania;1190;260;Territory;Dollar;NZD;0.0;0.0;0.0
+158;North Korea;KP;Asia;24983205;120538;Republic;Won;KPW;14.5;9.2;70.1
+159;Northern Mariana Islands;MP;Oceania;52344;464;Territory;Dollar;USD;18.3;3.7;77.8
+160;Norfolk Island;NF;Australia;2210;36;Territory;Dollar;AUD;0.0;0.0;0.0
+161;Norway;NO;Europe;5207689;323802;Monarchy;Krone;NOK;12.1;8.1;81.7
+162;Oman;OM;Asia;3286936;309500;Monarchy;Rial;OMR;24.4;3.4;75.2
+163;Austria;AT;Europe;8665550;83871;Republic;Euro;EUR;9.4;9.4;81.4
+164;Pakistan;PK;Asia;199085847;796095;Republic;Rupie;PKR;22.6;6.5;67.4
+165;Palestine;PS;Asia;2731052;5860;AutonomousRegion;Schekel;ILS;23.4;3.5;75.7
+166;Palau;PW;Oceania;21265;459;Republic;Dollar;USD;11.1;8;72.9
+167;Panama;PA;Central America;3657024;75420;Republic;Balboa;PAB;18.3;4.8;78.5
+168;Papua New Guinea;PG;Oceania;6672429;462840;Monarchy;Kina;PGK;24.4;6.5;67
+169;Paraguay;PY;South America;6783272;406752;Republic;Guaraní;PYG;16.4;4.7;77
+170;Peru;PE;South America;30444999;1285216;Republic;Nuevo Sol;PEN;18.3;6;73.5
+171;Philippines;PH;Asia;100998376;300000;Republic;Peso;PHP;24.3;6.1;69
+172;Pitcairn Islands;PN;Oceania;48;47;Territory;Pfund;GBP;0.0;0.0;0.0
+173;Poland;PL;Europe;38562189;312685;Republic;Zloty;PLN;9.7;10.2;77.4
+174;Portugal;PT;Europe;10825309;92090;Republic;Euro;EUR;9.3;11;79.2
+175;Puerto Rico;PR;North America;3598357;13790;Territory;Dollar;USD;10.9;8.7;79.2
+176;Reunion;RE;Africa;699000;2512;Territory;Euro;EUR;0.0;0.0;72.7
+177;Rwanda;RW;Africa;12661733;26338;Republic;Franc;RWF;33.8;9;59.7
+178;Romania;RO;Europe;21666350;238391;Republic;Leu;RON;9.1;11.9;74.9
+179;Russia;RU;Europe;142423773;17098242;Republic;Rubel;RUB;11.6;13.7;70.5
+180;Solomon Islands;SB;Oceania;622469;28896;Monarchy;Dollar;SBD;25.8;3.9;75.1
+181;Zambia;ZM;Africa;15066266;752618;Republic;Kwacha;ZMK;42.1;12.7;52.1
+182;Samoa;WS;Oceania;197773;2831;Monarchy;Tala;WST;20.9;5.3;73.5
+183;San Marino;SM;Europe;33020;61;Republic;Euro;EUR;8.6;8.5;83.2
+184;Saint Barthelemy;BL;America;7237;21;Territory;Euro;EUR;0.0;0.0;0.0
+185;Sao Tome and Principe;ST;Africa;194006;964;Republic;Dobra;STD;34.2;7.2;64.6
+186;Saudi Arabia;SA;Asia;27752316;2149690;Monarchy;Riyal;SAR;18.5;3.3;75
+187;Sweden;SE;Europe;9801616;450295;Monarchy;Krone;SEK;12;9.4;82
+188;Switzerland;CH;Europe;8121830;41277;Federation;Franken;CHF;10.5;8.1;82.5
+189;Senegal;SN;Africa;13975834;196722;Republic;Franc;XOF;34.5;8.5;61.3
+190;Serbia;RS;Europe;7176794;77474;Republic;Dinar;RSD;9.1;13.7;75.3
+191;Seychelles;SC;Africa;92430;455;Republic;Rupie;SCR;14.2;6.9;74.5
+192;Sierra Leone;SL;Africa;5879098;71740;Republic;Leone;SLL;37;10.8;57.8
+193;Zimbabwe;ZW;Africa;14229541;390757;Republic;Dollar;ZWL;32.3;10.1;57
+194;Singapore;SG;Asia;5674472;697;Republic;Dollar;SGD;8.3;3.4;84.7
+195;Saint Martin;SX;America;31754;54;Territory;Gulden;ANG;13;4.5;77.6
+196;Slovakia;SK;Europe;5445027;49035;Republic;Euro;EUR;9.9;9.7;76.9
+197;Slovenia;SI;Europe;1983412;20273;Republic;Euro;EUR;8.4;11.4;78
+198;Somalia;SO;Africa;10616380;637657;Republic;Schilling;SOS;40.5;13.6;52
+199;Spain;ES;Europe;48146134;505370;Monarchy;Euro;EUR;9.6;9;81.6
+200;Sri Lanka;LK;Asia;22053488;65610;Republic;Rupie;LKR;15.9;6.1;76.6
+201;Saint Helena, Ascension and Tristan da Cunha;SH;Africa;7795;308;Territory;Pfund;SHP;9.9;7.4;79.4
+202;Saint Kitts and Nevis;KN;North America;51936;261;Monarchy;Dollar;XCD;13.5;7.1;75.5
+203;Saint Lucia;LC;North America;163922;616;Monarchy;Dollar;XCD;13.7;7.4;77.6
+204;Saint Pierre and Miquelon;PM;North America;5657;242;Territory;Euro;EUR;7.4;9.7;80.4
+205;Saint Vincent and the Grenadines;VC;North America;102627;389;Monarchy;Dollar;XCD;13.6;7.2;75.1
+206;South Africa;ZA;Africa;53675563;1219090;Republic;Rand;ZAR;20.8;9.9;62.3
+207;Sudan;SD;Africa;36108853;1861484;Republic;Pfund;SDG;29.2;7.7;63.7
+208;South Georgia and South Sandwich Islands;GS;Antarctica;30;3903;Territory;Pfund;GBP;0.0;0.0;0.0
+209;South Korea;KR;Asia;49115196;99720;Republic;Won;KRW;8.2;6.8;80
+210;South Sudan;SS;Africa;12042910;644329;Republic;Pfund;SSP;36.9;8.2;0.0
+211;Suriname;SR;South America;579633;163820;Republic;Dollar;SRD;16.3;6.1;72
+212;Svalbard;SJ;Europe;1872;377;Territory;Krone;NOK;0.0;0.0;0.0
+213;Swaziland;SZ;Africa;1435613;17364;Monarchy;Lilangeni;SZL;24.7;13.6;51
+214;Syria;SY;Asia;17064854;185180;Republic;Pfund;SYP;22.2;4;74.7
+215;Tajikistan;TJ;Asia;8191958;143100;Republic;Somoni;TJS;24.4;6.2;67.4
+216;Taiwan;TW;Asia;23415126;35980;Republic;Dollar;TWD;8.5;7.1;80
+217;Tanzania;TZ;Africa;51045882;947300;Republic;Schilling;TZS;36.4;8;61.7
+218;Thailand;TH;Asia;67976405;513120;Monarchy;Baht;THB;11.2;7.8;74.4
+219;Timor-Leste;TL;Asia;1231116;14874;Republic;Dollar;USD;34.2;6.1;67.7
+220;Togo;TG;Africa;7552318;56785;Republic;Franc;XOF;34.1;7.3;64.5
+221;Tokelau;TK;Oceania;1337;12;Territory;Dollar;NZD;0.0;0.0;0.0
+222;Tonga;TO;Oceania;106501;747;Monarchy;Pa'anga;TOP;23;4.9;76
+223;Trinidad and Tobago;TT;North America;1222363;5128;Republic;Dollar;TTD;13.5;8.6;72.6
+224;Chad;TD;Africa;11631456;1284000;Republic;Franc;XAF;36.6;14.3;49.8
+225;Czech Republic;CZ;Europe;10644842;78867;Republic;Krone;CZK;9.6;10.3;78.5
+226;Tunisia;TN;Africa;11037225;163610;Republic;Dinar;TND;16.6;6;75.9
+227;Turkey;TR;Asia;79414269;783562;Republic;Lira;TRY;16.3;5.9;74.6
+228;Turkmenistan;TM;Asia;5231422;488100;Republic;Manat;TMT;19.4;6.1;69.8
+229;Turks and Caicos Islands;TC;North America;50280;948;Territory;Dollar;USD;16.1;3.1;79.7
+230;Tuvalu;TV;Oceania;10869;26;Monarchy;Dollar;AUD;23.7;8.7;66.2
+231;Uganda;UG;Africa;37101745;241038;Republic;Schilling;UGX;43.8;10.7;54.9
+232;Ukraine;UA;Europe;44429471;603550;Republic;Hrywnja;UAH;10.7;14.5;71.6
+233;Hungary;HU;Europe;9897541;93028;Republic;Forint;HUF;9.2;12.7;75.7
+234;Uruguay;UY;South America;3341893;176215;Republic;Peso;UYU;13.1;9.5;77
+235;Uzbekistan;UZ;Asia;29199942;447400;Republic;So'm;UZS;17;5.3;73.5
+236;Vanuatu;VU;Oceania;272264;12189;Republic;Vatu;VUV;25;4.1;73.1
+237;Holy See (Vatican City);VA;Europe;842;0;Monarchy;Euro;EUR;0.0;0.0;0.0
+238;Venezuela;VE;South America;29275460;912050;Republic;Bolívar Fuerte;VEF;19.2;5.3;74.5
+239;United Arab Emirates;AE;Asia;5779760;83600;Monarchy;Dirham;AED;15.4;2;77.3
+240;United States;US;North America;321368864;9826675;Republic;Dollar;USD;12.5;8.2;79.7
+241;United Kingdom;GB;Europe;64088222;243610;Monarchy;Pfund;GBP;12.2;9.4;80.5
+242;Vietnam;VN;Asia;94348835;331210;Republic;Dong;VND;16;5.9;73.2
+243;Wallis and Futuna;WF;Oceania;15613;142;OverseasCommunity;Franc;XPF;13.5;5.1;79.6
+244;Christmas Island;CX;Australia;1530;135;Territory;Dollar;AUD;0.0;0.0;0.0
+245;Western Sahara;EH;Africa;570866;266000;AutonomousRegion;Dirham;MAD;30.2;8.3;62.6
+246;Central African Republic;CF;Africa;5391539;622984;Republic;Franc;XAF;35.1;13.8;51.8
+247;Cyprus;CY;Asia;1189197;9251;Republic;Euro;EUR;11.4;6.6;78.5
