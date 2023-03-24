@@ -205,8 +205,7 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<string> NonFatalAttemptOfZambeziSharkOnPeopleBetweenDAndKQuery()
         {
-            // TODO DATETIME COMPARE (&& DateTime.Compare((DateTime) attack.DateTime, new DateTime(1960, 3, 3)) <= 0)
-            return DataContext.SharkAttacks.Where(attack => attack.Type == AttackType.Boating && attack.AttackSeverenity == AttackSeverenity.NonFatal && attack.DateTime != null)
+            return DataContext.SharkAttacks.Where(attack => attack.Type == AttackType.Boating && attack.AttackSeverenity == AttackSeverenity.NonFatal && attack.DateTime != null && new DateTime(1960, 3, 3).CompareTo(attack.DateTime!) <= 0)
                 .Join(DataContext.SharkSpecies.Where(specie => specie.AlsoKnownAs!.Equals("Zambesi shark")),
                                attack => attack.SharkSpeciesId,
                                               specie => specie.Id,
