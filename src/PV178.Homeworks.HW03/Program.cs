@@ -71,3 +71,19 @@ for (int i = 0; i < expected3.Count; i++)
         Console.WriteLine(item);
     }
 }
+
+var expected4 = new List<string>
+            {
+                "Alessandro Gomes de Souza was attacked in Brazil by Ginglymostoma cirratum",
+                "Alexandre Rassiga was attacked in Reunion by Lamna ditropis",
+                "Aylson Gadelha was attacked in Brazil by Carcharhinus brachyurus",
+                "Boulabhaï Ishmael was attacked in Reunion by Notorynchus cepedianus",
+                "Bruna Silva Gobbi was attacked in Brazil by Isurus oxyrinchus"
+            };
+var actual4 = queries.InfoAboutPeopleAndCountriesOnBorRAndFatalAttacksQuery();
+
+for (int i = 0; i < expected4.Count; i++)
+{
+    Console.WriteLine($"Expected: {expected4.ElementAt(i)}");
+    Console.WriteLine($"Actual: {actual4.ElementAt(i)}");
+}

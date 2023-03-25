@@ -218,19 +218,62 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<Tuple<string, List<SharkSpecies>>> LightestSharksInSouthAmericaQuery()
         {
-            return DataContext.SharkAttacks
+            /*
+            DataContext.SharkAttacks
                 .Join(DataContext.SharkSpecies.OrderBy(specie => specie.Weight).Take(10),
-                                              attack => attack.SharkSpeciesId,
-                                                                                           specie => specie.Id,
-                                                                                                                                                       (attack, specie) => new { attack, specie })
-                .Join(DataContext.Countries.Where(country => country.Continent != null && country.Continent.Equals("South America")),
-                                              attack => attack.attack.CountryId,
-                                                                                           country => country.Id,
-                                                                                                                                                       (attack, country) => new { attack, country })
+                attack => attack.SharkSpeciesId,
+                specie => specie.Id,
+                (attack, specie) => new { attack, specie })
+                .Join(DataContext.Countries.Where(country => country.Continent != null && country.Continent.Equals("South America") && country.Name != null),
+                attack => attack.attack.CountryId,
+                country => country.Id,
+                (attack, country) => new { attack, country })
                 .GroupBy(
-                               attack => attack.country.Name,
-                                              attack => attack.attack.specie,
-                                                             (key, g) => new Tuple<string, List<SharkSpecies>>(key, g.GroupBy(s => s.Id).Select(g => g.First()).ToList()))
+                attack => attack.country.Name,
+                attack => attack.attack.specie,
+                (key, g) => new Tuple<string, List<SharkSpecies>>(key!, g.Count() == 0 ? g.ToList() : g.GroupBy(s => s.Id).Select(g => g.First()).ToList()))
+                .ToList();
+
+            DataContext.SharkAttacks
+            .Join(DataContext.SharkSpecies.OrderBy(specie => specie.Weight).Take(10),
+            attack => attack.SharkSpeciesId,
+            specie => specie.Id,
+            (attack, specie) => new { attack, specie })
+            .GroupJoin(DataContext.Countries.Where(country => country.Continent != null && country.Continent.Equals("South America") && country.Name != null),
+            attack => attack.attack.CountryId,
+            country => country.Id,
+            (attack, country) => new { attack, country })
+            .SelectMany(
+            x => x.attack.DefaultIfEmpty(),
+            (attack, country) => new { attack, country })
+            .GroupBy(
+            attack => attack.country.Name,
+            attack => attack == null ? null : attack.attack.attack.specie,
+            (key, g) => new Tuple<string, List<SharkSpecies>>(key!, g.ElementAt(0) == null ? new List<SharkSpecies>() : g.GroupBy(s => s.Id).Select(g => g.First()).ToList()))
+            .ToList();
+
+            DataContext.SharkAttacks
+            .Join(DataContext.SharkSpecies.OrderBy(specie => specie.Weight).Take(10),
+            attack => attack.SharkSpeciesId,
+            specie => specie.Id,
+            (attack, specie) => new { attack, specie })
+            */
+            return DataContext.Countries.Where(country => country.Continent != null && country.Continent.Equals("South America") && country.Name != null)
+                .GroupJoin(DataContext.SharkAttacks
+                    .Join(DataContext.SharkSpecies.OrderBy(specie => specie.Weight).Take(10),
+                    attack => attack.SharkSpeciesId,
+                    specie => specie.Id,
+                    (attack, specie) => new { attack, specie }),
+                country => country.Id,
+                attack => attack.attack.CountryId,
+                (country, attack) => new { country, attack })
+                .SelectMany(
+                x => x.attack.DefaultIfEmpty(),
+                (country, attack ) => new { country, attack })
+                .GroupBy(
+                attack => attack.country.country.Name,
+                attack => attack.attack == null ? null : attack.attack.specie,
+                (key, g) => new Tuple<string, List<SharkSpecies>>(key!, g.ElementAt(0) == null ? new List<SharkSpecies>() : g.GroupBy(s => s!.Id).Select(g => g.First()).ToList()!))
                 .ToList();
         }
 
@@ -246,8 +289,22 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public bool FiftySixMaxSpeedAndAgeQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return !DataContext.SharkSpecies.Where(specie => specie.TopSpeed >= 56)
+                .Join(DataContext.SharkAttacks,
+                specie => specie.Id,
+                attack => attack.SharkSpeciesId,
+                (specie, attack) => attack
+                ).GroupBy(
+                attack => attack.SharkSpeciesId,
+                attack => attack.AttackedPersonId,
+                (key, g) => new { key, g }
+                ).Select(attack => attack.g
+                    .Join(DataContext.AttackedPeople.Where(person => person.Age > 56),
+                    g => g,
+                    person => person.Id,
+                    (g, person) => new { g }
+                ))
+                .ToList().Any(g => g.Count() == 0);
         }
 
         /// <summary>
@@ -266,8 +323,26 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<string> InfoAboutPeopleAndCountriesOnBorRAndFatalAttacksQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return DataContext.Countries.Where(country => country.Name?[0] == 'B' || country.Name?[0] == 'R')
+                .Join(DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal),
+                country => country.Id,
+                attack => attack.CountryId,
+                (country, attack) => new { country, attack }
+                )
+                .Join(DataContext.SharkSpecies,
+                attack2 => attack2.attack.SharkSpeciesId,
+                specie => specie.Id,
+                (attack2, specie) => new { attack2, specie }
+                )
+                .Join(DataContext.AttackedPeople.Where(person => person.Name != null && person.Name[0] >= 'A' && person.Name[0] <= 'Z'),
+                attack3 => attack3.attack2.attack.AttackedPersonId,
+                person => person.Id,
+                (attack3, person) => new { attack3, person }
+                )
+                .Select(x => $"{x.person.Name} was attacked in {x.attack3.attack2.country.Name} by {x.attack3.specie.LatinName}")
+                .OrderBy(x => x)
+                .Take(5)
+                .ToList();
         }
 
         /// <summary>
