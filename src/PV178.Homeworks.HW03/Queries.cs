@@ -162,20 +162,6 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public Dictionary<string, double> SwimmerAttacksSharkAverageSpeedQuery()
         {
-            DataContext.SharkAttacks.Where(attack => attack.Activity!.Contains("Swimming") || attack.Activity!.Contains("swimming"))
-                .Join(DataContext.SharkSpecies.Where(specie => specie.TopSpeed != null),
-                               attack => attack.SharkSpeciesId,
-                                              specie => specie.Id,
-                                                             (attack, specie) => new { attack, specie })
-                .Join(DataContext.Countries,
-                attack => attack.attack.CountryId,
-                country => country.Id,
-                (attack2, country) => new { attack2, country })
-                .GroupBy(
-                attack => attack.country.Continent,
-                attack => attack.attack2,
-                (key, g) => new { Key = key, Average = g.GroupBy(a => a.attack.SharkSpeciesId).Select(g => g.First()) })
-                .ToList().ForEach(e => { Console.Write(e.Key + " : "); e.Average.ToList().ForEach(Console.WriteLine); });
             return DataContext.SharkAttacks.Where(attack => attack.Activity!.Contains("Swimming") || attack.Activity!.Contains("swimming"))
                 .Join(DataContext.SharkSpecies.Where(specie => specie.TopSpeed != null),
                                attack => attack.SharkSpeciesId,
@@ -187,8 +173,8 @@ namespace PV178.Homeworks.HW03
                 (attack2, country) => new { attack2, country })
                 .GroupBy(
                 attack => attack.country.Continent,
-                attack => attack.attack2,
-                (key, g) => new { Key = key, Average = g.GroupBy(a => a.attack.SharkSpeciesId).Select(g => g.First().specie.TopSpeed).Average() })
+                attack => attack.attack2.specie.TopSpeed,
+                (key, g) => new { Key = key, Average = g.Average() })
                 .ToDictionary(attack => attack.Key!, attack => Math.Round(attack.Average!.Value, 2));
         }
 
@@ -232,8 +218,20 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<Tuple<string, List<SharkSpecies>>> LightestSharksInSouthAmericaQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return DataContext.SharkAttacks
+                .Join(DataContext.SharkSpecies.OrderBy(specie => specie.Weight).Take(10),
+                                              attack => attack.SharkSpeciesId,
+                                                                                           specie => specie.Id,
+                                                                                                                                                       (attack, specie) => new { attack, specie })
+                .Join(DataContext.Countries.Where(country => country.Continent != null && country.Continent.Equals("South America")),
+                                              attack => attack.attack.CountryId,
+                                                                                           country => country.Id,
+                                                                                                                                                       (attack, country) => new { attack, country })
+                .GroupBy(
+                               attack => attack.country.Name,
+                                              attack => attack.attack.specie,
+                                                             (key, g) => new Tuple<string, List<SharkSpecies>>(key, g.GroupBy(s => s.Id).Select(g => g.First()).ToList()))
+                .ToList();
         }
 
         /// <summary>
