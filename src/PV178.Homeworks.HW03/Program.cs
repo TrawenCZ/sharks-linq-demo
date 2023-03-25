@@ -87,3 +87,26 @@ for (int i = 0; i < expected4.Count; i++)
     Console.WriteLine($"Expected: {expected4.ElementAt(i)}");
     Console.WriteLine($"Actual: {actual4.ElementAt(i)}");
 }
+
+var expected5 = new List<string>
+            {
+                "Italy: 17900 EUR",
+                "Croatia: 8900 HRK",
+                "Greece: 6750 EUR",
+                "France: 3150 EUR",
+                "Ireland: 300 EUR"
+            };
+var actual5 = queries.InfoAboutFinesInEuropeQuery();
+
+for (int i = 0; i < expected5.Count; i++)
+{
+    Console.WriteLine($"Expected: {expected5.ElementAt(i)}");
+    Console.WriteLine($"Actual: {actual5.ElementAt(i)}");
+}
+
+var expected6 =
+                "Republic: 59,9%, Monarchy: 18,6%, Territory: 15,8%, AutonomousRegion: 2,0%, ParliamentaryDemocracy: 1,6%, AdministrativeRegion: 0,8%, OverseasCommunity: 0,8%, Federation: 0,4%";
+var actual6 = queries.StatisticsAboutGovernmentsQuery().Replace('.', ',');
+
+Console.WriteLine($"Expected: {expected6}");
+Console.WriteLine($"Actual: {actual6}");

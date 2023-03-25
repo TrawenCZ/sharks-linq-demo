@@ -370,8 +370,22 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<string> InfoAboutFinesInEuropeQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return DataContext.Countries.Where(country => country.Continent != null && country.Continent.Equals("Europe") && country.Name?[0] >= 'A' && country.Name?[0] <= 'L')
+                .GroupJoin(DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal || attack.AttackSeverenity == AttackSeverenity.NonFatal),
+                country => country.Id,
+                attack => attack.CountryId,
+                (country, attack) => new { country, attack })
+                .SelectMany(
+                x => x.attack.DefaultIfEmpty(),
+                (country, attack) => new { country, attack })
+                .GroupBy(
+                attack => new { attack.country.country.Name, attack.country.country.CurrencyCode },
+                attack => attack.attack == null ? null : attack.attack.AttackSeverenity,
+                (key, g) => new { key, Sum = g.Aggregate(0, (sum, next) => sum + (next == null ? 0 : (next == AttackSeverenity.Fatal ? 300 : 250)), sum => sum) })
+                .OrderByDescending(x => x.Sum)
+                .Take(5)
+                .Select(x => $"{x.key.Name}: {x.Sum} {x.key.CurrencyCode}")
+                .ToList();
         }
 
         /// <summary>
@@ -390,8 +404,18 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public Dictionary<string, int> FiveSharkNamesWithMostFatalitiesQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal)
+                .Join(DataContext.SharkSpecies.Where(specie => specie.Name != null),
+                attack => attack.SharkSpeciesId,
+                specie => specie.Id,
+                (attack, specie) => new { attack, specie })
+                .GroupBy(
+                attack => attack.specie.Name!,
+                attack => attack.attack.Id,
+                (key, g) => new { key, Sum = g.Count() })
+                .OrderByDescending(x => x.Sum)
+                .Take(5)
+                .ToDictionary(x => x.key, x => x.Sum);
         }
 
         /// <summary>
@@ -411,8 +435,13 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public string StatisticsAboutGovernmentsQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return DataContext.Countries
+                .GroupBy(
+                country => country.GovernmentForm,
+                country => country.Id,
+                (key, g) => new { key, Count = g.Count() })
+                .OrderByDescending(x => x.Count)
+                .Aggregate("", (output, next) => output + $"{next.key}: {Math.Round((double) next.Count * 100 / DataContext.Countries.Count(), 1).ToString("0.0")}%, ", output => output.Substring(0, output.Length - 2));
         }
 
         /// <summary>
