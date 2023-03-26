@@ -2,6 +2,7 @@
 using PV178.Homeworks.HW03.DataLoading.Factory;
 using PV178.Homeworks.HW03.Model;
 using PV178.Homeworks.HW03.Model.Enums;
+using System.Linq;
 
 namespace PV178.Homeworks.HW03
 {
@@ -464,8 +465,15 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<string> TigerSharkAttackZipQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            var tigerSharkSpecieId = DataContext.SharkSpecies.Where(specie => specie.Name == "Tiger shark").Select(specie => specie.Id).First();
+            var tigerSharkAttacksIn2001 = DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == tigerSharkSpecieId && attack.AttackedPersonId != null && new DateTime(2001, 1, 1).CompareTo(attack.DateTime) <= 0 && new DateTime(2001, 12, 31).CompareTo(attack.DateTime) >= 0);
+            var tigerSharkAttacksIn2001CountryNames = DataContext.Countries.Where(country => tigerSharkAttacksIn2001.Select(attack => attack.CountryId).Contains(country.Id)).Select(country => new { country.Id, country.Name });
+            var tigerSharkAttacksIn2001PersonNames = DataContext.AttackedPeople.Where(person => person.Name != null && tigerSharkAttacksIn2001.Select(attack => attack.AttackedPersonId).Contains(person.Id)).Select(person => new { person.Id, person.Name});
+            return tigerSharkAttacksIn2001.Select(
+                 attack => new { attack, countryName = tigerSharkAttacksIn2001CountryNames.Where(country => country.Id == attack.CountryId).Select(country => country.Name).FirstOrDefault(), personName = tigerSharkAttacksIn2001PersonNames.Where(person => person.Id == attack.AttackedPersonId).Select(person => person.Name).FirstOrDefault() })
+                .Where(attack => attack.personName != null)
+                .Select(attack => $"{attack.personName} was tiggered in {attack.countryName ?? "Unknown country"}")
+                .ToList();
         }
 
         /// <summary>
@@ -483,8 +491,16 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public string LongestVsShortestSharkQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            var sharksByLength = DataContext.SharkSpecies
+                .OrderBy(specie => specie.Length).ToList();
+            var shortestAndLongestShark = new { Shortest = sharksByLength.First().Id, Longest = sharksByLength.Last().Id };
+            return DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == shortestAndLongestShark.Shortest || attack.SharkSpeciesId == shortestAndLongestShark.Longest)
+                .GroupBy(
+                attack => attack.SharkSpeciesId,
+                attack => attack.Id,
+                (key, g) => new { Key = (key == shortestAndLongestShark.Longest ? 0 : 1), Count = g.Count() })
+                .OrderBy(x => x.Key)
+                .Aggregate("", (output, next) => output + $"{Math.Round((double) next.Count * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}% vs ", output => output.Substring(0, output.Length - 4));
         }
 
         /// <summary>
@@ -498,8 +514,10 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public int SafeCountriesQuery()
         {
-            // TODO...
-            throw new NotImplementedException();
+            return DataContext.Countries.Count() - 
+                DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal)
+                .Join(DataContext.Countries, attack => attack.CountryId, country => country.Id, (attack, country) => attack)
+                .GroupBy(attack => attack.CountryId).Count();
         }
     }
 }
