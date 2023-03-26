@@ -54,14 +54,14 @@ namespace PV178.Homeworks.HW03
                 attack => attack.SharkSpeciesId,
                 (species, attack) => new { species, attack })
                 .Join(DataContext.Countries.Where(country => country.Name!.Equals("Bahamas")),
-                a1 => a1.attack.CountryId,
+                speciesAttack => speciesAttack.attack.CountryId,
                 countries => countries.Id,
-                (a1, countries) => new { a1, countries })
+                (speciesCountryAttack, countries) => new { speciesCountryAttack, countries })
                 .Join(DataContext.AttackedPeople,
-                a2 => a2.a1.attack.AttackedPersonId,
-                people => people.Id,
-                (a2, people) => new { a2, people })
-                .Select(elem => $"{elem.people.Name} was attacked in Bahamas by {elem.a2.a1.species.LatinName}")
+                speciesCountryAttack => speciesCountryAttack.speciesCountryAttack.attack.AttackedPersonId,
+                person => person.Id,
+                (speciesCountryPersonAttack, person) => new { speciesCountryPersonAttack, person })
+                .Select(x => $"{x.person.Name} was attacked in Bahamas by {x.speciesCountryPersonAttack.speciesCountryAttack.species.LatinName}")
                 .ToList();
         }
 
@@ -103,24 +103,25 @@ namespace PV178.Homeworks.HW03
         public Dictionary<string, string> MostProlificNicknamesInCountriesQuery()
         {
             return DataContext.Countries
-                .Where(country => country.Continent!.Equals("South America"))
+                .Where(country => country.Continent != null && country.Continent.Equals("South America"))
                 .Join(DataContext.SharkAttacks,
-                               country => country.Id,
-                                              attack => attack.CountryId,
-                                                             (country, attack) => new { country, attack })
+                country => country.Id,
+                attack => attack.CountryId,
+                (country, attack) => new { country, attack })
                 .Join(DataContext.SharkSpecies.Where(specie => specie.AlsoKnownAs != null && !specie.AlsoKnownAs.Equals("")),
-                               a1 => a1.attack.SharkSpeciesId,
-                                              species => species.Id,
-                                                             (a1, species) => new { a1, species })
-                .GroupBy(a2 => a2.a1.country.Name)
-                .Select(a2 => new { a2.Key, Value = a2
-                    .GroupBy(
-                    a2 => a2.species.AlsoKnownAs,
-                    a2 => a2.species,
-                    (key, g) => new { Key = key, Count = g.Count() })
-                    .OrderByDescending(specie => specie.Count).First().Key 
+                attack2 => attack2.attack.SharkSpeciesId,
+                species => species.Id,
+                (attack2, species) => new { attack2, species })
+                .GroupBy(attack => attack.attack2.country.Name)
+                .Select(attack => new {
+                    attack.Key, Value = attack
+                        .GroupBy(
+                        attack => attack.species.AlsoKnownAs,
+                        attack => attack.species.Id,
+                        (key, g) => new { Key = key, Count = g.Count() })
+                        .OrderByDescending(specie => specie.Count).First().Key 
                     })
-                .ToDictionary(a5 => a5.Key!, a6 => a6.Value!);
+                .ToDictionary(attack => attack.Key!, attack => attack.Value!);
         }
 
         /// <summary>
@@ -145,7 +146,8 @@ namespace PV178.Homeworks.HW03
                 (key, g) => new { Key = key, Count = g.Count() })
                 .OrderByDescending(attack => attack.Count)
                 .Select(attack => attack.Key)
-                .Take(3).ToList();
+                .Take(3)
+                .ToList();
         }
 
         /// <summary>
@@ -194,14 +196,13 @@ namespace PV178.Homeworks.HW03
         {
             return DataContext.SharkAttacks.Where(attack => attack.Type == AttackType.Boating && attack.AttackSeverenity == AttackSeverenity.NonFatal && attack.DateTime != null && new DateTime(1960, 3, 3).CompareTo(attack.DateTime!) <= 0)
                 .Join(DataContext.SharkSpecies.Where(specie => specie.AlsoKnownAs!.Equals("Zambesi shark")),
-                               attack => attack.SharkSpeciesId,
-                                              specie => specie.Id,
-                                                             (attack, specie) => new { attack, specie })
+                attack => attack.SharkSpeciesId,
+                specie => specie.Id,
+                (attack, specie) => attack.AttackedPersonId)
                 .Join(DataContext.AttackedPeople.Where(person => person.Name?[0] >= 'D' && person.Name?[0] <= 'K'),
-                               attack => attack.attack.AttackedPersonId,
-                                              person => person.Id,
-                                                             (attack, person) => new { attack, person })
-                .Select(attack => attack.person.Name!)
+                personId => personId,
+                person => person.Id,
+                (personId, person) => person.Name!)
                 .OrderBy(name => name)
                 .ToList();
         }
@@ -267,13 +268,13 @@ namespace PV178.Homeworks.HW03
                     (attack, specie) => new { attack, specie }),
                 country => country.Id,
                 attack => attack.attack.CountryId,
-                (country, attack) => new { country, attack })
+                (country, attack) => new { country.Name, attack })
                 .SelectMany(
                 x => x.attack.DefaultIfEmpty(),
-                (country, attack ) => new { country, attack })
+                (countryName, attack) => new { countryName, Attack2 = (attack == null ? null : attack.specie) })
                 .GroupBy(
-                attack => attack.country.country.Name,
-                attack => attack.attack == null ? null : attack.attack.specie,
+                attack => attack.countryName.Name,
+                attack => attack.Attack2,
                 (key, g) => new Tuple<string, List<SharkSpecies>>(key!, g.ElementAt(0) == null ? new List<SharkSpecies>() : g.GroupBy(s => s!.Id).Select(g => g.First()).ToList()!))
                 .ToList();
         }
@@ -298,12 +299,12 @@ namespace PV178.Homeworks.HW03
                 ).GroupBy(
                 attack => attack.SharkSpeciesId,
                 attack => attack.AttackedPersonId,
-                (key, g) => new { key, g }
-                ).Select(attack => attack.g
+                (key, gOfPersonIds) => gOfPersonIds
+                ).Select(gOfPersonIds => gOfPersonIds
                     .Join(DataContext.AttackedPeople.Where(person => person.Age > 56),
-                    g => g,
+                    gOfPersonIds => gOfPersonIds,
                     person => person.Id,
-                    (g, person) => new { g }
+                    (gOfPersonIds, person) => gOfPersonIds
                 ))
                 .ToList().Any(g => g.Count() == 0);
         }
