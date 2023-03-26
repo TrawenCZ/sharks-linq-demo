@@ -464,8 +464,8 @@ namespace PV178.Homeworks.HW03
         /// </summary>
         /// <returns>The query result</returns>
         public List<string> TigerSharkAttackZipQuery()
-        {
-            var tigerSharkSpecieId = DataContext.SharkSpecies.Where(specie => specie.Name == "Tiger shark").Select(specie => specie.Id).First();
+        {   /*
+            var tigerSharkSpecieId = DataContext.SharkSpecies.Where(specie => specie.Name != null && specie.Name.Equals("Tiger shark")).Select(specie => specie.Id).Single();
             var tigerSharkAttacksIn2001 = DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == tigerSharkSpecieId && attack.AttackedPersonId != null && new DateTime(2001, 1, 1).CompareTo(attack.DateTime) <= 0 && new DateTime(2001, 12, 31).CompareTo(attack.DateTime) >= 0);
             var tigerSharkAttacksIn2001CountryNames = DataContext.Countries.Where(country => tigerSharkAttacksIn2001.Select(attack => attack.CountryId).Contains(country.Id)).Select(country => new { country.Id, country.Name });
             var tigerSharkAttacksIn2001PersonNames = DataContext.AttackedPeople.Where(person => person.Name != null && tigerSharkAttacksIn2001.Select(attack => attack.AttackedPersonId).Contains(person.Id)).Select(person => new { person.Id, person.Name});
@@ -473,6 +473,14 @@ namespace PV178.Homeworks.HW03
                  attack => new { attack, countryName = tigerSharkAttacksIn2001CountryNames.Where(country => country.Id == attack.CountryId).Select(country => country.Name).FirstOrDefault(), personName = tigerSharkAttacksIn2001PersonNames.Where(person => person.Id == attack.AttackedPersonId).Select(person => person.Name).FirstOrDefault() })
                 .Where(attack => attack.personName != null)
                 .Select(attack => $"{attack.personName} was tiggered in {attack.countryName ?? "Unknown country"}")
+                .ToList();
+            */
+            var tigerSharkSpecieId = DataContext.SharkSpecies.Where(specie => specie.Name != null && specie.Name.Equals("Tiger shark")).Select(specie => specie.Id).Single();
+            var tigerSharkAttacksIn2001 = DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == tigerSharkSpecieId && attack.AttackedPersonId != null && new DateTime(2001, 1, 1).CompareTo(attack.DateTime) <= 0 && new DateTime(2001, 12, 31).CompareTo(attack.DateTime) >= 0).OrderBy(attack => attack.AttackedPersonId);
+            var tigerSharkAttacksIn2001CountryNames = DataContext.Countries.Where(country => tigerSharkAttacksIn2001.Select(attack => attack.CountryId).Contains(country.Id)).Select(country => new { country.Id, country.Name });
+            var tigerSharkAttacksIn2001PersonNames = DataContext.AttackedPeople.Where(person => person.Name != null && tigerSharkAttacksIn2001.Select(attack => attack.AttackedPersonId).Contains(person.Id)).Select(person => new { person.Id, person.Name }).OrderBy(person => person.Id);
+            return tigerSharkAttacksIn2001.Zip(tigerSharkAttacksIn2001PersonNames, (attack, person) => new { Attack = attack, PersonName = person.Name, CountryName = tigerSharkAttacksIn2001CountryNames.Where(country => country.Id == attack.CountryId).Select(country => country.Name).FirstOrDefault() })
+                .Select(attack => $"{attack.PersonName} was tiggered in {attack.CountryName ?? "Unknown country"}")
                 .ToList();
         }
 
