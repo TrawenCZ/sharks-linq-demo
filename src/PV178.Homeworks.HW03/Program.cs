@@ -110,3 +110,5 @@ var actual6 = queries.StatisticsAboutGovernmentsQuery().Replace('.', ',');
 
 Console.WriteLine($"Expected: {expected6}");
 Console.WriteLine($"Actual: {actual6}");
+
+queries.TigerSharkAttackZipQuery();
