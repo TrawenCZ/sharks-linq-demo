@@ -166,7 +166,7 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public Dictionary<string, double> SwimmerAttacksSharkAverageSpeedQuery()
         {
-            return DataContext.SharkAttacks.Where(attack => attack.Activity!.Contains("Swimming") || attack.Activity!.Contains("swimming"))
+            return DataContext.SharkAttacks.Where(attack => attack.Activity != null && (attack.Activity.Contains("Swimming") || attack.Activity.Contains("swimming")))
                 .Join(DataContext.SharkSpecies.Where(specie => specie.TopSpeed != null),
                 attack => attack.SharkSpeciesId,
                 specie => specie.Id,
@@ -196,7 +196,7 @@ namespace PV178.Homeworks.HW03
         public List<string> NonFatalAttemptOfZambeziSharkOnPeopleBetweenDAndKQuery()
         {
             return DataContext.SharkAttacks.Where(attack => attack.Type == AttackType.Boating && attack.AttackSeverenity == AttackSeverenity.NonFatal && attack.DateTime != null && new DateTime(1960, 3, 3).CompareTo(attack.DateTime!) <= 0)
-                .Join(DataContext.SharkSpecies.Where(specie => specie.AlsoKnownAs!.Equals("Zambesi shark")),
+                .Join(DataContext.SharkSpecies.Where(specie => specie.AlsoKnownAs != null && specie.AlsoKnownAs.Equals("Zambesi shark")),
                 attack => attack.SharkSpeciesId,
                 specie => specie.Id,
                 (attack, specie) => new { attack, specie })
@@ -274,8 +274,8 @@ namespace PV178.Homeworks.HW03
                 (country, attackSpecie) => new { country.country, Specie = (attackSpecie == null ? null : attackSpecie.specie) })
                 .GroupBy(
                 countrySpecie => countrySpecie.country.Name,
-                attack => attack.Specie,
-                (key, g) => new Tuple<string, List<SharkSpecies>>(key!, g.ElementAt(0) == null ? new List<SharkSpecies>() : g.GroupBy(specie => specie!.Id).Select(g => g.First()).ToList()!))
+                countrySpecie => countrySpecie.Specie,
+                (key, g) => new Tuple<string, List<SharkSpecies>>(key!, g.ElementAt(0) == null ? new List<SharkSpecies>() : g.Where(specie => specie != null).GroupBy(specie => specie!.Id).Select(g => g.First()).ToList()!))
                 .ToList();
         }
 
@@ -532,7 +532,7 @@ namespace PV178.Homeworks.HW03
                 attack => attack.Id,
                 (key, g) => new { Key = (key == shortestAndLongestShark.Longest ? 0 : 1), Count = g.Count() })
                 .OrderBy(x => x.Key)
-                .Aggregate("", (output, next) => output + $"{Math.Round((double) next.Count * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}% vs ", output => output.Substring(0, output.Length - 4));
+                .Aggregate(new StringBuilder(), (output, next) => output.Append($"{Math.Round((double) next.Count * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}% vs "), output => output.Remove(output.Length - 4, 4).ToString());
         }
 
         /// <summary>

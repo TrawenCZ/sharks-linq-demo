@@ -112,3 +112,5 @@ Console.WriteLine($"Expected: {expected6}");
 Console.WriteLine($"Actual: {actual6}");
 
 queries.TigerSharkAttackZipQuery();
+
+queries.LightestSharksInSouthAmericaQuery();
