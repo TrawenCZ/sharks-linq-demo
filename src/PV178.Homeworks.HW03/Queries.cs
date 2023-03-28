@@ -299,8 +299,8 @@ namespace PV178.Homeworks.HW03
                 ).GroupBy(
                 attack => attack.SharkSpeciesId,
                 attack => attack.AttackedPersonId,
-                (specieId, personId) => new { specieId, personId })
-                .Select(specieIdPersonId => specieIdPersonId.personId
+                (specieId, personIds) => new { specieId, personIds })
+                .Select(specieIdPersonIds => specieIdPersonIds.personIds
                     .Join(DataContext.AttackedPeople.Where(person => person.Age > 56),
                     personId => personId,
                     person => person.Id,
@@ -381,8 +381,8 @@ namespace PV178.Homeworks.HW03
                 (country, attack) => new { country.country, attack })
                 .GroupBy(
                 countryAttack => new { countryAttack.country.Name, countryAttack.country.CurrencyCode },
-                countryAttack => countryAttack.attack == null ? null : countryAttack.attack.AttackSeverenity,
-                (key, g) => new { key, Sum = g.Aggregate(0, (sum, next) => sum + (next == null ? 0 : (next == AttackSeverenity.Fatal ? 300 : 250)), sum => sum) })
+                countryAttack => (countryAttack.attack == null ? 0 : (countryAttack.attack.AttackSeverenity == AttackSeverenity.Fatal ? 300 : 250)),
+                (key, g) => new { key, Sum = g.Sum() })
                 .OrderByDescending(countryAttackSeverenity => countryAttackSeverenity.Sum)
                 .Take(5)
                 .Select(countryAttackSeverenity => $"{countryAttackSeverenity.key.Name}: {countryAttackSeverenity.Sum} {countryAttackSeverenity.key.CurrencyCode}")

@@ -114,3 +114,5 @@ Console.WriteLine($"Actual: {actual6}");
 queries.TigerSharkAttackZipQuery();
 
 queries.LightestSharksInSouthAmericaQuery();
+
+Console.WriteLine(queries.FiftySixMaxSpeedAndAgeQuery());
