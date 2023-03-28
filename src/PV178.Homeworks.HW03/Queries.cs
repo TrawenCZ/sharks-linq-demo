@@ -489,22 +489,14 @@ namespace PV178.Homeworks.HW03
                 .Select(specie => specie.Id)
                 .Single();
             var tigerSharkAttacksIn2001 = DataContext.SharkAttacks
-                .Where(attack => attack.SharkSpeciesId == tigerSharkSpecieId && attack.AttackedPersonId != null && new DateTime(2001, 1, 1).CompareTo(attack.DateTime) <= 0 && new DateTime(2001, 12, 31).CompareTo(attack.DateTime) >= 0)
-                .Select(attack => new { attack.AttackedPersonId, attack.CountryId })
+                .Where(attack => attack.SharkSpeciesId == tigerSharkSpecieId && attack.AttackedPersonId != null && attack.DateTime.HasValue && attack.DateTime.Value.Year == 2001)
                 .OrderBy(attack => attack.AttackedPersonId);
-            return tigerSharkAttacksIn2001
-                .Zip(
-                DataContext.AttackedPeople
-                    .Where(person => person.Name != null && tigerSharkAttacksIn2001.Select(attack => attack.AttackedPersonId).Contains(person.Id))
-                    .Select(person => new { person.Id, person.Name })
-                    .OrderBy(person => person.Id),
-                (attack, person) => new { 
-                    PersonName = person.Name, 
-                    CountryName = DataContext.Countries
-                        .Where(country => country.Id == attack.CountryId)
-                        .Select(country => country.Name)
-                        .FirstOrDefault() })
-                .Select(attack => $"{attack.PersonName} was tiggered in {attack.CountryName ?? "Unknown country"}")
+            return DataContext.AttackedPeople
+                .Where(person => person.Name != null && tigerSharkAttacksIn2001.Select(attack => attack.AttackedPersonId).Contains(person.Id))
+                .OrderBy(person => person.Id)
+                .Select(person => person.Name)
+                .Zip(tigerSharkAttacksIn2001.Select(attack => DataContext.Countries.Where(country => attack.CountryId == country.Id).Select(country => country.Name).FirstOrDefault("Unknown country")),
+                (personName, countryName) => $"{personName} was tiggered in {countryName}")
                 .ToList();
         }
 
@@ -530,7 +522,7 @@ namespace PV178.Homeworks.HW03
                 .GroupBy(
                 attack => attack.SharkSpeciesId,
                 attack => attack.Id,
-                (key, g) => new { Key = (key == shortestAndLongestShark.Longest ? 0 : 1), Count = g.Count() })
+                (key, g) => new { Key = (key == shortestAndLongestShark.Shortest ? "shortest" : "longest"), Count = g.Count() })
                 .OrderBy(x => x.Key)
                 .Aggregate(new StringBuilder(), (output, next) => output.Append($"{Math.Round((double) next.Count * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}% vs "), output => output.Remove(output.Length - 4, 4).ToString());
         }
@@ -547,11 +539,7 @@ namespace PV178.Homeworks.HW03
         public int SafeCountriesQuery()
         {
             return DataContext.Countries.Count() - 
-                DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal)
-                .Join(DataContext.Countries,
-                attack => attack.CountryId,
-                country => country.Id,
-                (attack, country) => attack)
+                DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal && attack.CountryId != null)
                 .GroupBy(attackCountry => attackCountry.CountryId).Count();
         }
     }
