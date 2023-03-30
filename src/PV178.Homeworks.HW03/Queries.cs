@@ -332,21 +332,22 @@ namespace PV178.Homeworks.HW03
         /// <returns>The query result</returns>
         public List<string> InfoAboutFinesInEuropeQuery()
         {
-            return DataContext.Countries.Where(country => country.Continent == "Europe" && country.Name?[0] >= 'A' && country.Name?[0] <= 'L')
-                .GroupJoin(DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity == AttackSeverenity.Fatal || attack.AttackSeverenity == AttackSeverenity.NonFatal),
+            return DataContext.Countries.Where(country => country.Name?[0] >= 'A' && country.Name?[0] <= 'L' && country.Continent == "Europe")
+                .GroupJoin(DataContext.SharkAttacks.Where(attack => attack.AttackSeverenity != AttackSeverenity.Unknown),
                 country => country.Id,
                 attack => attack.CountryId,
                 (country, attack) => new { country, attack })
                 .SelectMany(
                 countryAttack => countryAttack.attack.DefaultIfEmpty(),
-                (country, attack) => new { country.country, attack })
+                (country, attack) => new { country.country, Fee = (attack == null ? 0 : (attack.AttackSeverenity == AttackSeverenity.Fatal ? 300 : 250)) })
                 .GroupBy(
-                countryAttack => new { countryAttack.country.Name, countryAttack.country.CurrencyCode },
-                countryAttack => (countryAttack.attack == null ? 0 : (countryAttack.attack.AttackSeverenity == AttackSeverenity.Fatal ? 300 : 250)),
-                (key, g) => new { key, Sum = g.Sum() })
+                countryAttackSeverenity => countryAttackSeverenity.country,
+                countrtAttackSeverenity => countrtAttackSeverenity.Fee,
+                (country, fee) => new { country, Sum = fee.Sum() }
+                )
                 .OrderByDescending(countryAttackSeverenity => countryAttackSeverenity.Sum)
                 .Take(5)
-                .Select(countryAttackSeverenity => $"{countryAttackSeverenity.key.Name}: {countryAttackSeverenity.Sum} {countryAttackSeverenity.key.CurrencyCode}")
+                .Select(countryAttackSeverenity => $"{countryAttackSeverenity.country.Name}: {countryAttackSeverenity.Sum} {countryAttackSeverenity.country.CurrencyCode}")
                 .ToList();
         }
 
