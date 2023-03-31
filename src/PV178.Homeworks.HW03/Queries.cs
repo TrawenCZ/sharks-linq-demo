@@ -4,6 +4,7 @@ using PV178.Homeworks.HW03.Model;
 using PV178.Homeworks.HW03.Model.Enums;
 using System.Linq;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PV178.Homeworks.HW03
 {
@@ -436,7 +437,7 @@ namespace PV178.Homeworks.HW03
                 .Single();
             var tigerSharkAttacksIn2001 = DataContext.SharkAttacks
                 .Where(attack => attack.SharkSpeciesId == tigerSharkSpecieId && attack.AttackedPersonId != null && attack.DateTime.HasValue && attack.DateTime.Value.Year == 2001)
-                .OrderBy(attack => attack.AttackedPersonId);
+                .OrderBy(attack => attack.AttackedPersonId).ToList();
             return DataContext.AttackedPeople
                 .Where(person => person.Name != null && tigerSharkAttacksIn2001.Select(attack => attack.AttackedPersonId).Contains(person.Id))
                 .OrderBy(person => person.Id)
@@ -463,14 +464,18 @@ namespace PV178.Homeworks.HW03
         {
             var sharksByLength = DataContext.SharkSpecies
                 .OrderBy(specie => specie.Length).ToList();
-            var shortestAndLongestShark = new { ShortestId = sharksByLength.First().Id, LongestId = sharksByLength.Last().Id };
+            var sharkAttackCount = new { Shortest = DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == sharksByLength.First().Id).Count(),
+                                         Longest = DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == sharksByLength.Last().Id).Count() };
+            return $"{Math.Round((double) sharkAttackCount.Longest * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}% vs {Math.Round((double) sharkAttackCount.Shortest * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}%";
+            /*
             return DataContext.SharkAttacks.Where(attack => attack.SharkSpeciesId == shortestAndLongestShark.ShortestId || attack.SharkSpeciesId == shortestAndLongestShark.LongestId)
                 .GroupBy(
                 attack => attack.SharkSpeciesId,
-                attack => attack.Id,
-                (key, g) => new { Key = (key == shortestAndLongestShark.ShortestId ? "shortest" : "longest"), Count = g.Count() })
+            attack => attack.Id,
+                (key, g) => new { Key = (key == shortestAndLongestShark.ShortestId ? "shortest" : "longest"), Percentage = (Math.Round((double) g.Count() * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")) })
                 .OrderBy(x => x.Key)
-                .Aggregate(new StringBuilder(), (output, next) => output.Append($"{Math.Round((double) next.Count * 100 / DataContext.SharkAttacks.Count(), 1).ToString("0.0")}% vs "), output => output.Remove(output.Length - 4, 4).ToString());
+                .Aggregate(new StringBuilder(), (output, next) => output.Append($"{next.Percentage}% vs "), output => output.Remove(output.Length - 4, 4).ToString());
+            */
         }
 
         /// <summary>
